@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.senai</groupId>
-	<artifactId>project1</artifactId>
+	<artifactId>project2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>project1</name>
-	<description>Project 1 Senai</description>
+	<name>project2</name>
+	<description>Project 2 Senai</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -54,6 +54,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-resource-server</artifactId>
 		</dependency>
 	</dependencies>
 

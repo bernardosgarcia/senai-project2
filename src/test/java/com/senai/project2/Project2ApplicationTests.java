@@ -1,10 +1,10 @@
-package com.senai.project1;
+package com.senai.project2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Project1ApplicationTests {
+class Project2ApplicationTests {
 
 	@Test
 	void contextLoads() {
