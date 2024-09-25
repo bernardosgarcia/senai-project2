@@ -11,14 +11,19 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="usr_id")
     private Integer id;
-    @Column(name="usr_username")
-    private String username;
+
+    @Column(name="usr_login")
+    private String login;
+
     @Column(name="usr_password")
     private String password;
+
     @Column(name="usr_email")
     private String email;
+
     @Column(name="usr_created_at")
     private LocalDate createdAt;
+
     @Column(name = "usr_updated_at")
     private LocalDate updatedAt;
 
@@ -30,12 +35,12 @@ public class UserModel {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
