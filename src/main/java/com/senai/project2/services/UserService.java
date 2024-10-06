@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -31,6 +32,25 @@ public class UserService {
             userResponseDtoList.add(UserExtensions.toDto(userModel));
         }
         return userResponseDtoList;
+    }
+
+    public UserResponseDto Update(Integer id, UserRequestDto userRequestDTO) throws Exception {
+        try
+        {
+            UserModel existingUser = _userRepository.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+            UserModel updatedUser = UserExtensions.toEntity(userRequestDTO);
+            updatedUser.setId(existingUser.getId());
+            UserModel savedUser = _userRepository.save(updatedUser);
+            
+            return UserExtensions.toDto(savedUser);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e);
+        }
+
     }
 
 }

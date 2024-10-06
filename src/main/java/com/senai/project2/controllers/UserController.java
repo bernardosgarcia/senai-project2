@@ -5,10 +5,7 @@ import com.senai.project2.dtos.response.UserResponseDto;
 import com.senai.project2.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,12 @@ public class UserController {
     public ResponseEntity<List<UserResponseDto>> GetAll() {
         List<UserResponseDto> userList = userService.GetAll();
         return new ResponseEntity<>(userList, HttpStatus.OK);
+    }
+
+    @PatchMapping("/user/{id}")
+    public ResponseEntity<UserResponseDto> Update(@PathVariable Integer id, @RequestBody UserRequestDto userRequestDTO) throws Exception {
+        UserResponseDto userResponseDto = userService.Update(id, userRequestDTO);
+        return new ResponseEntity<>(userResponseDto, HttpStatus.OK);
     }
 
 }
