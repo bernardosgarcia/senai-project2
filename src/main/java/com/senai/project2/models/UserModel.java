@@ -3,6 +3,7 @@ package com.senai.project2.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class UserModel {
@@ -26,6 +27,9 @@ public class UserModel {
 
     @Column(name = "usr_updated_at")
     private LocalDate updatedAt;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<TaskModel> tasks;
 
     public Integer getId() {
         return id;
@@ -73,5 +77,13 @@ public class UserModel {
 
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<TaskModel> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<TaskModel> tasks) {
+        this.tasks = tasks;
     }
 }

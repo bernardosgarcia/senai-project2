@@ -5,8 +5,9 @@ import com.senai.project2.dtos.response.TaskResponseDto;
 import com.senai.project2.services.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class TaskController {
@@ -18,7 +19,23 @@ public class TaskController {
     }
 
     @PostMapping("/task")
-    public ResponseEntity<TaskResponseDto> Insert(TaskRequestDto taskRequestDto) {
-        return new ResponseEntity<>(taskService.Insert(taskRequestDto), HttpStatus.OK);
+    public ResponseEntity<TaskResponseDto> Insert(@RequestBody TaskRequestDto taskRequestDto) throws Exception {
+        return new ResponseEntity<>(taskService.insert(taskRequestDto), HttpStatus.OK);
+    }
+
+    @PutMapping("/task/{id}")
+    public ResponseEntity<TaskResponseDto> Update(@PathVariable Integer id,
+                                                  @RequestBody TaskRequestDto taskRequestDto) throws Exception {
+        return new ResponseEntity<>(taskService.update(id, taskRequestDto), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/task/{id}")
+    public ResponseEntity<Boolean> Delete(@PathVariable Integer id) {
+        return new ResponseEntity<>(taskService.delete(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/task")
+    public ResponseEntity<List<TaskResponseDto>> GetAll(@RequestParam Integer usrId) {
+        return new ResponseEntity<>(taskService.getAll(usrId), HttpStatus.OK);
     }
 }

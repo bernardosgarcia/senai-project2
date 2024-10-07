@@ -20,9 +20,9 @@ public class TaskModel {
     @Column(name="tsk_priority")
     private Integer priority;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usr_id", referencedColumnName = "usr_id")
-    private UserModel usrId;
+    @ManyToOne
+    @JoinColumn(name = "usr_id")
+    private UserModel user;
 
     @Column(name="tsk_created_at")
     private LocalDate createdAt;
@@ -54,14 +54,6 @@ public class TaskModel {
         this.priority = priority;
     }
 
-    public UserModel getUsrId() {
-        return usrId;
-    }
-
-    public void setUsrId(UserModel usrId) {
-        this.usrId = usrId;
-    }
-
     public LocalDate getCreatedAt() {
         return createdAt;
     }
@@ -76,5 +68,13 @@ public class TaskModel {
 
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 }

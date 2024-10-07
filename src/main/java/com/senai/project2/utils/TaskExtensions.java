@@ -9,13 +9,10 @@ import java.time.LocalDate;
 
 public class TaskExtensions {
 
-    public static TaskModel toEntity(TaskRequestDto taskRequestDTO) {
-        UserModel userModel = new UserModel();
-        userModel.setId(taskRequestDTO.userId());
-
+    public static TaskModel toEntity(TaskRequestDto taskRequestDTO, UserModel userModel) {
         TaskModel taskModel = new TaskModel();
         taskModel.setDescription(taskRequestDTO.description());
-        taskModel.setUsrId(userModel);
+        taskModel.setUser(userModel);
         taskModel.setPriority(taskRequestDTO.priority());
         taskModel.setCreatedAt(LocalDate.now());
         return taskModel;
@@ -26,8 +23,8 @@ public class TaskExtensions {
                 taskModel.getId(),
                 taskModel.getDescription(),
                 taskModel.getPriority(),
-                taskModel.getUsrId().getId(),
-                taskModel.getUsrId().getEmail(),
+                taskModel.getUser().getId(),
+                taskModel.getUser().getEmail(),
                 taskModel.getCreatedAt(),
                 taskModel.getUpdatedAt()
         );

@@ -34,22 +34,17 @@ public class UserService {
         return userResponseDtoList;
     }
 
-    public UserResponseDto Update(Integer id, UserRequestDto userRequestDTO) throws Exception {
-        try
-        {
-            UserModel existingUser = _userRepository.findById(id)
-                    .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    public String GetAuth(String login, String password) {
+        List<UserModel> listUserModel = _userRepository.findAll();
+        Optional<UserModel> userModel = listUserModel
+                .stream()
+                .filter(x -> x.getLogin().equals(login) && x.getPassword().equals(password))
+                .findFirst();
 
-            UserModel updatedUser = UserExtensions.toEntity(userRequestDTO);
-            updatedUser.setId(existingUser.getId());
-            UserModel savedUser = _userRepository.save(updatedUser);
-            
-            return UserExtensions.toDto(savedUser);
+        if (userModel.isPresent()) {
+            return "Authenticated";
         }
-        catch (Exception e)
-        {
-            throw new Exception(e);
-        }
+        return "Not Authenticated";
 
     }
 

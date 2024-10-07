@@ -29,4 +29,10 @@ public class UserController {
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
+    @GetMapping("/user/auth")
+    public ResponseEntity<String> GetAuth(@RequestParam String login, @RequestParam String password) {
+        String response = userService.GetAuth(login, password);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }
