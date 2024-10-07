@@ -29,10 +29,4 @@ public class UserController {
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
-    @PatchMapping("/user/{id}")
-    public ResponseEntity<UserResponseDto> Update(@PathVariable Integer id, @RequestBody UserRequestDto userRequestDTO) throws Exception {
-        UserResponseDto userResponseDto = userService.Update(id, userRequestDTO);
-        return new ResponseEntity<>(userResponseDto, HttpStatus.OK);
-    }
-
 }
